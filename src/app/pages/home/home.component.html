@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>Country Flags</h1>
+
+  <div *ngIf="loading" class="loading-state">
+    <mat-spinner diameter="40"></mat-spinner>
+    <span>Loading countries...</span>
+  </div>
+
+<div class="countries-grid">
+  <div *ngFor="let country of countries" class="country-card"
+       (click)="loadCountryDetails(country.name)">
+    <img [src]="country.flagUrl" [alt]="country.name + ' flag'">
+    
+    <div class="country-details">
+      <p *ngIf="country.capital">
+        <strong>Name:</strong> {{ country.name }}
+      </p>
+      <p *ngIf="country.capital">
+        <strong>Capital:</strong> {{ country.capital }}
+      </p>
+      <p *ngIf="country.population !== undefined">
+        <strong>Population:</strong> {{ country.population | number }}
+      </p>
+      <p *ngIf="!country.capital && country.population === undefined">
+        Click to load details...
+      </p>
+    </div>
+  </div>
+</div>
+</div>
